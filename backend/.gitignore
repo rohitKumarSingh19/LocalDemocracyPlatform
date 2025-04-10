@@ -1,0 +1,24 @@
+# Node modules (massive folder, should not be pushed)
+node_modules/
+
+# Environment variables (contains secrets like DB URIs)
+.env
+
+# OS-related files (macOS, Windows)
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Optional: IDE-specific settings (if using VS Code)
+.vscode/
+
+# Optional: Coverage reports from tests
+coverage/
+
+# Optional: Build folders (if you're compiling stuff)
+dist/
+build/
