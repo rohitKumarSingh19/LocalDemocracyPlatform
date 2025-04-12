@@ -1,9 +1,16 @@
 import React from 'react';
-
+import './Navbar.css'; // Make sure to create and link this CSS file
 const Navbar = () => {
   return (
-    <nav style={{ background: '#333', color: '#fff', padding: '10px' }}>
-      <h3>Local Democracy Platform</h3>
+    <nav className="navbar">
+      <div className="navbar-container">
+        <h3 className="navbar-logo">Local Democracy Platform</h3>
+        <ul className="navbar-links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/login">Login</a></li>
+          <li><a href="/register">Register</a></li>
+        </ul>
+      </div>
     </nav>
   );
 };

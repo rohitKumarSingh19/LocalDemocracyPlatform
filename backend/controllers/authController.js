@@ -21,4 +21,6 @@ exports.login = async (req, res) => {
 
   const token = jwt.sign({ id: user._id, neighborhood: user.neighborhood }, process.env.JWT_SECRET);
   res.json({ token });
+//   console.log('Login payload:', req.body);
+// console.log('JWT_SECRET exists:', !!process.env.JWT_SECRET);
 };
