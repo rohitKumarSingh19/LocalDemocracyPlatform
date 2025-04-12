@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import Navbar from './components/Navbar';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
+import Footer from './components/Footer'; 
 function App() {
   return (
     <Router>
@@ -16,6 +17,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         {/* Add other routes here */}
       </Routes>
+      <Footer/>
     </Router>
   );
 }

@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import api from '../services/api';
 import './Login.css'; // make sure this CSS file exists
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -12,6 +14,7 @@ const Login = () => {
       const res = await api.post('/auth/login', { email, password });
       console.log('Login success:', res.data);
       alert('Login successful');
+      navigate('/dashboard');
     } catch (err) {
       console.error('Login failed:', err);
       alert(err.response?.data?.message || 'Login failed');
