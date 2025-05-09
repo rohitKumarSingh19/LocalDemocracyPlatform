@@ -1,3 +1,4 @@
+
 const express = require('express');
 const http = require('http');
 const socketIO = require('socket.io');
@@ -31,7 +32,9 @@ const io = socketIO(server, {
     methods: ['GET', 'POST']
   }
 });
-
+// ✅ Move setVoteIO after `io` is initialized
+const { setIO: setVoteIO } = require('./controllers/votingController');
+setVoteIO(io);
 // Socket.IO Logic
 io.on('connection', (socket) => {
   console.log('✅ New client connected:', socket.id);
@@ -41,7 +44,17 @@ io.on('connection', (socket) => {
     console.log('📢 Notification received:', data);
     io.emit('receive-notification', data); // Send to all clients
   });
+  // 💬 Real-time Feedback
+  socket.on('submit-feedback', (data) => {
+    console.log('💬 Feedback received:', data);
+    io.emit('feedback-submitted', data); // broadcast to all
+  });
 
+  // 🗳️ Real-time Voting
+  socket.on('submit-vote', (data) => {
+    console.log('🗳️ Vote received:', data);
+    io.emit('vote-submitted', data); // broadcast to all
+  });
   socket.on('disconnect', () => {
     console.log('❌ Client disconnected:', socket.id);
   });

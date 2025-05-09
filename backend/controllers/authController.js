@@ -15,11 +15,14 @@ exports.register = async (req, res) => {
 
 exports.login = async (req, res) => {
   const { email, password } = req.body;
+
+  //console.log("Login attempt:", { email, password });
   const user = await User.findOne({ email });
   if (!user || !(await bcrypt.compare(password, user.password)))
     return res.status(400).json({ message: 'Invalid credentials' });
 
   const token = jwt.sign({ id: user._id, neighborhood: user.neighborhood }, process.env.JWT_SECRET);
+  //console.log("Login successful, token generated");
   res.json({ token });
 //   console.log('Login payload:', req.body);
 // console.log('JWT_SECRET exists:', !!process.env.JWT_SECRET);

@@ -12,6 +12,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const res = await api.post('/auth/login', { email, password });
+      localStorage.setItem('token', res.data.token);
       console.log('Login success:', res.data);
       alert('Login successful');
       navigate('/dashboard');
